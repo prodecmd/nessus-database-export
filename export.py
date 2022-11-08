@@ -201,6 +201,9 @@ def insert_host(scan_id, host_id, history_id, cursor):
 def insert_scan_run(scan_id, history_id):
     # Get scan runs for a scan
     scan_run = get_scan_run(scan_id, history_id)
+    
+    # Avkommentera för debug vid behov.
+    #print ('Working on (scan_id / history_id): ' + str(scan_id) + ' / ' + str(history_id))
 
     # Count number of vulns of each severity for this scan run
     # 0 is informational, 4 is critical
@@ -270,7 +273,10 @@ def update_scans():
 
                     # If scan run hasn't yet been inserted
                     if result == None:
-                        print ('Inserting scan run: ' + str(scan_run['history_id']))
+                        #print ('Inserting scan run: ' + str(scan_run['history_id']))
+                        # Print med fler detaljer - kompletterat så aktuellt scan_id framgår inom parentes 
+                        # för varje enskild insert.
+                        print ('Inserting scan run (scan: ' + str(scan['id']) + '): ' + str(scan_run['history_id']))
                         insert_scan_run(scan['id'], scan_run['history_id'])
     
 update_folders()
