@@ -1,1 +1,8 @@
+# Config file containing secrets.
 config.ini
+
+# Python venv
+bin/**
+include/**
+lib/**
+pyvenv.cfg
