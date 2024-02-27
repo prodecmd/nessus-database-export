@@ -205,7 +205,7 @@ def insert_scan_run(scan_id, history_id):
     scan_run = get_scan_run(scan_id, history_id)
     
     # Output for debugging.
-    #print ('Working on (scan_id / history_id): ' + str(scan_id) + ' / ' + str(history_id))
+    print ('Working on (scan_id / history_id): ' + str(scan_id) + ' / ' + str(history_id))
 
     # Count number of vulns of each severity for this scan run
     # 0 is informational, 4 is critical
@@ -240,6 +240,7 @@ def update_scans():
     with connection.cursor() as cursor:
         # Upsert scans
         for scan in scans['scans']:
+            #print ('DEBUG: ' + str(scan['name']) )
             sql = "INSERT INTO `scan` (`scan_id`, `folder_id`, `type`, `name`)\
                     VALUES (%s, %s, %s, %s)\
                     ON DUPLICATE KEY UPDATE folder_id=%s, type=%s, name=%s"
