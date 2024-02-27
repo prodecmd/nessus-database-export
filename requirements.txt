@@ -1,4 +1,0 @@
-configparser
-requests
-PyMySQL
-cryptography
