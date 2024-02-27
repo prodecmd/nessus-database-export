@@ -20,6 +20,7 @@ base = 'https://{hostname}:{port}'.format(hostname=nessus_hostname, port=nessus_
 trash = config.getboolean('nessus','trash')
 
 db_hostname = config.get('mysql','hostname')
+db_port = int(config.get('mysql','port'))
 username = config.get('mysql','username')
 password = config.get('mysql','password')
 database = config.get('mysql','database')
@@ -38,6 +39,7 @@ PLUGIN_OUTPUT = PLUGIN_ID + '?history_id={history_id}'
 
 # Database connection
 connection = pymysql.connect(host=db_hostname,
+                             port=db_port,
                              user=username,
                              password=password,
                              db=database,
