@@ -4,6 +4,9 @@ config.ini
 # Python venv
 bin/**
 include/**
+Include/**
 lib/**
+Lib/**
 lib64/**
+Scripts/**
 pyvenv.cfg
