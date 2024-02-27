@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import configparser
+#import configparser
 import requests
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 import pymysql.cursors
@@ -9,6 +9,20 @@ import os
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 # Read configuration
+# Use environment variables instead of config file.
+nessus_hostname = os.environ.get('NESSUS_HOST', 'localhost')
+nessus_port = os.environ.get('NESSUS_PORT', '8834')
+access_key = 'accessKey=' + os.environ.get('ACCESS_KEY') + ';'
+secret_key = 'secretKey=' + os.environ.get('SECRET_KEY') + ';'
+base = 'https://{hostname}:{port}'.format(hostname=nessus_hostname, port=nessus_port)
+trash = os.environ.get('TRASH', False)
+
+db_hostname = os.environ.get('MYSQL_HOST', 'localhost')
+db_port = int(os.environ.get('MYSQL_PORT', '3306'))
+username = os.environ.get('DB_USER')
+password = os.environ.get('DB_PASSWORD')
+database = os.environ.get('DATABASE', "nessusdb")
+'''
 config = configparser.ConfigParser()
 config.read(os.path.join(os.path.dirname(__file__), 'config.ini'))
 
@@ -24,7 +38,7 @@ db_port = int(config.get('mysql','port'))
 username = config.get('mysql','username')
 password = config.get('mysql','password')
 database = config.get('mysql','database')
-
+'''
 # Nessus endpoints
 FOLDERS = '/folders'
 SCANS = '/scans'
